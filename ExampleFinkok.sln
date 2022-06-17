@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleFinkok", "ExampleFinkok\ExampleFinkok.csproj", "{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinkokFunctions", "FinkokFunctions\FinkokFunctions.csproj", "{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {594237EA-3D02-4040-8034-0BC6E2D5F906}
+	EndGlobalSection
+EndGlobal
