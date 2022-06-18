@@ -1,11 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FinkokFunctions.Stamp;
-
 namespace ExampleFinkok.Pages.Finkok
 {
-    public class GenerateXMLModel : PageModel
+    public class CreateXMLModel : PageModel
     {
+        public CreateXMLModel(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
+
+        private readonly IWebHostEnvironment _hostingEnvironment;
         public void OnGet(string message = null)
         {
             ViewData["ResposeXML"] = message;
@@ -13,8 +18,9 @@ namespace ExampleFinkok.Pages.Finkok
 
         public IActionResult OnPost()
         {
+            string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "/certifiedDocs/"; 
             XMLGenerator generatorXML = new XMLGenerator();
-            string responseXml = generatorXML.generateXML4();
+            string responseXml = generatorXML.generateXML4(certifiedFilesRoot);
             ViewData["ResposeXML"] = responseXml;
 
             return RedirectToPage("./Index", new { message = responseXml });

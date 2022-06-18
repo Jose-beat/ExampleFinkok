@@ -124,11 +124,11 @@ namespace FinkokFunctions.Stamp
 
 
         }
-        public string invoice()
+        public string invoice(string cfdiFilesRoot)
         {
             string user = "uriel.rr@ticas.com.mx";
             string password = "The_Beatles1960";
-
+            string stampXMLName = "cfdi_1.xml";
             ApplicationClient tim = new ApplicationClient();
 
             stamp param = new stamp();
@@ -137,7 +137,7 @@ namespace FinkokFunctions.Stamp
 
             XmlDocument xmlChargeDocument = new XmlDocument();
 
-            xmlChargeDocument.Load(@"C:\Users\WAR-PLANE\Desktop\Proyectos\Facturacion\cfdi_1.xml");
+            xmlChargeDocument.Load(cfdiFilesRoot + stampXMLName);
 
 
             byte[] byteXmlDocument = Encoding.UTF8.GetBytes(xmlChargeDocument.OuterXml);

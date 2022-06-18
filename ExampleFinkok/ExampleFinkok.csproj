@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Finkok\GenerateXML.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.Federation" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.Http" Version="4.8.*" />
@@ -30,18 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Factureya\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Finkok\GenerateXML.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Finkok\GenerateXML.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Finkok\GenerateXML.cshtml" />
   </ItemGroup>
 
 </Project>

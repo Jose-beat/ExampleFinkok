@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services;
 using CFDI4_VB;
+
+
 namespace FinkokFunctions.Stamp
 {
     public class XMLGenerator
     {
-
-        public string generateXML4()
+        
+        public string generateXML4(string certifiedRoot)
         {
             string response = "";
-            string username = "";
-            string password = "";
-            string path = @"C:\Users\WAR-PLANE\Desktop\Proyectos\Facturacion\csd_eku9003173c9_20190617131829\CSD_EKU9003173C9_20190617131829";
+            string username = "uriel.rr@ticas.com.mx";
+            string password = "The_Beatles1960";
+            string path = certifiedRoot;
             string cerFile = Path.Combine(path, "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer");
             string keyFile = Path.Combine(path, "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key");
             string keyPass = "1234567a";
