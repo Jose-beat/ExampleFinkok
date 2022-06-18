@@ -1,14 +1,127 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
+using DemoFinkok.cancelacion;
+using Microsoft.VisualBasic.FileIO;
 using ServiceFinkok;
 namespace FinkokFunctions.Stamp
 {
     public class MethodStamp
     {
 
-        public void generateXML4()
+        public string cancelInvoice()
         {
+            string directCer = @"";
+            string directKey = @"";
+            string passwordFinkok = "";
+            string passwordCer = "";
+            string username = "";
+            string statusUuid = "";
+
+            try
+            {
+                fabricaPEM(directCer, directKey, passwordFinkok, passwordCer);
+                string cer = "";
+                string key = "";
+
+                using (TextFieldParser fileReader = new TextFieldParser(""))
+                    key = fileReader.ReadToEnd();
+
+                using (TextFieldParser fileReader = new TextFieldParser(""))
+                    key = fileReader.ReadToEnd();
+                ApplicationClient cancela = new ApplicationClient();
+                cancel can = new cancel();
+
+                List<UUID> listUuid = new List<UUID>();
+                listUuid.Add(new UUID { UUID1 = "", FolioSustitucion = "", Motivo = "" });
+
+                can.username = username;
+                can.password = passwordFinkok;
+                can.taxpayer_id = "";
+                can.UUIDS = listUuid.ToArray();
+                can.cer = stringToBase64ByteArray(cer);
+                cancelResponse cancelResponse = new cancelResponse();
+
+              // cancelResponse = cancelAsync(can).Result; 
+
+                if (cancelResponse.cancelResult.CodEstatus == null)
+                {
+                    string emisor = cancelResponse.cancelResult.RfcEmisor;
+                    string acuse = cancelResponse.cancelResult.Acuse;
+                    string date = cancelResponse.cancelResult.Fecha;
+
+                    Array folioFiscal = cancelResponse.cancelResult.Folios;
+
+                    for (int pos = 0; pos < folioFiscal.Length; pos++)
+                    {
+                     Console.WriteLine("UUID: " + cancelResponse.cancelResult.Folios[pos].UUID +
+                              "\nEstatus cancelación: " + cancelResponse.cancelResult.Folios[pos].EstatusCancelacion +
+                              "\nEstatus UUID: " + cancelResponse.cancelResult.Folios[pos].EstatusUUID);
+                    }
+                    statusUuid = cancelResponse.cancelResult.CodEstatus;
+                    return statusUuid;
+                }
+                else
+                {
+                    statusUuid = cancelResponse.cancelResult.CodEstatus;
+                    return statusUuid;
+                }
+
+            }
+            catch (Exception e)
+            {
+                return statusUuid;
+            }
+
+        }
+
+        public byte[] stringToBase64ByteArray(string input)
+        {
+            Byte[] ret = Encoding.UTF8.GetBytes(input);
+            string s = Convert.ToBase64String(ret);
+            ret = Convert.FromBase64String(s);
+            return ret;
+        }
+
+        public void fabricaPEM(string cer, string key, string pass, string passCSDoFIEL)
+        {
+            Dictionary<String, String> DicArchivos = new Dictionary<String, String>();
+
+            string convertCerToPem;
+            string convertKeyToPem;
+            string encryptaKey;
+            string fileCer = cer;
+            string fileKey = key;
+            string nameFileCertified = Path.GetFileName(fileCer) ;
+            string nameFileKey = Path.GetFileName(fileKey);
+
+            string url;
+            url = "";
+            string path;
+            path = "";
+
+            convertCerToPem = path + "" + fileCer + "" + passCSDoFIEL + "" + nameFileCertified + ".pem";
+            convertKeyToPem = path + "" + url + nameFileKey + "" + "" + url + nameFileKey + "" + pass;
+
+            encryptaKey = path + "" + url + nameFileKey + "" + "" + url + nameFileKey + "" + pass;
+
+
+            System.IO.StreamWriter oSW = new System.IO.StreamWriter(url + "CERyKEY.bat");
+            oSW.WriteLine(convertCerToPem);
+            oSW.WriteLine(convertKeyToPem);
+            oSW.WriteLine(encryptaKey);
+            oSW.Flush();
+            oSW.Close();
+
+
+            
+
+
+
+
+
+
+
 
         }
         public string invoice()

@@ -16,8 +16,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\DLLFinkok\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CFDI4_VB">
       <HintPath>..\DLLFinkok\CFDI4_VB.dll</HintPath>
+    </Reference>
+    <Reference Include="DemoFinkok">
+      <HintPath>..\DLLFinkok\DemoFinkok.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <HintPath>..\DLLFinkok\System.Web.Services.dll</HintPath>
     </Reference>
   </ItemGroup>
 

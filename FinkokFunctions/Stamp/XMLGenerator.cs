@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web.Services;
 using CFDI4_VB;
 namespace FinkokFunctions.Stamp
 {
@@ -40,15 +40,7 @@ namespace FinkokFunctions.Stamp
                      TipoCambio: "1",
                      MetodoPago: "PUE",
                      Confirmacion: null);
-            //ComprobanteInformacionGlobal comprobanteInformacionGlobal = new ComprobanteInformacionGlobal() { 
-            //Periodicidad = "Men",
-            //Meses = "Enero",
-            //Año = "2022"
-
-            //};
-
-
-            //comprobante.InformacionGlobal = comprobanteInformacionGlobal;
+      
             cfds.AgregarEmisor(
                 Rfc: "",
                 RegimenFiscal: "",

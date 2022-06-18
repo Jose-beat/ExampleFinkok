@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleFinkok", "ExampleFinkok\ExampleFinkok.csproj", "{29DAFBD4-FDE5-41D4-A5B5-35AC48C49FD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinkokFunctions", "FinkokFunctions\FinkokFunctions.csproj", "{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinkokFunctions", "FinkokFunctions\FinkokFunctions.csproj", "{6C767B99-DC5D-432B-AD32-DB9BDE2F8C38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

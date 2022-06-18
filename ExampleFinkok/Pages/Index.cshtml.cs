@@ -18,8 +18,8 @@ namespace ExampleFinkok.Pages
             XMLGenerator createXml = new XMLGenerator();
             //string createInvoice = stampMethods.invoice();
             //ViewData["ResposeInvoice"] = createInvoice ;
-            string createResponse = createXml.generateXML4();
-            ViewData["ResposeInvoice"] = createResponse;
+            ///string createResponse = createXml.generateXML4();
+            //ViewData["ResposeInvoice"] = createResponse;
         }
         public void OnPost()
         {

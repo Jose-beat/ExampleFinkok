@@ -1,0 +1,16 @@
+﻿@page
+@model ExampleFinkok.Pages.Finkok.GenerateXMLModel
+@{
+    string responseInvoice = (string)ViewData["ResposeInvoice"];
+}
+
+<form method="post">
+    De click para generar xml 4.0 de su factura
+    <button type="submit">Generar Factura</button>
+</form>
+
+<div>
+
+<p>@responseInvoice</p>
+</div>
+
