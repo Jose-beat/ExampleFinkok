@@ -9,10 +9,10 @@ namespace FinkokFunctions.Stamp
     public class MethodStamp
     {
 
-        public string cancelInvoice()
+        public string cancelInvoice(string cerFilesRoot)
         {
-            string directCer = @"";
-            string directKey = @"";
+            string directCer = cerFilesRoot;
+            string directKey = cerFilesRoot;
             string passwordFinkok = "";
             string passwordCer = "";
             string username = "";
