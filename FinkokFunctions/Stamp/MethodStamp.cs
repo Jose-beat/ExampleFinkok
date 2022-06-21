@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Xml;
-using DemoFinkok.cancelacion;
+using ServiceCancelacion;
 using Microsoft.VisualBasic.FileIO;
 using ServiceFinkok;
 namespace FinkokFunctions.Stamp
@@ -29,7 +29,7 @@ namespace FinkokFunctions.Stamp
 
                 using (TextFieldParser fileReader = new TextFieldParser(""))
                     key = fileReader.ReadToEnd();
-                ApplicationClient cancela = new ApplicationClient();
+                ServiceCancelacion.ApplicationClient cancela = new ServiceCancelacion.ApplicationClient();
                 cancel can = new cancel();
 
                 List<UUID> listUuid = new List<UUID>();
@@ -40,30 +40,30 @@ namespace FinkokFunctions.Stamp
                 can.taxpayer_id = "";
                 can.UUIDS = listUuid.ToArray();
                 can.cer = stringToBase64ByteArray(cer);
-                cancelResponse cancelResponse = new cancelResponse();
+                cancelResponse1 cancelResponse = new cancelResponse1();
 
-              // cancelResponse = cancelAsync(can).Result; 
+              cancelResponse = cancela.cancelAsync(can).Result; 
 
-                if (cancelResponse.cancelResult.CodEstatus == null)
+                if (cancelResponse.cancelResponse.cancelResult.CodEstatus == null)
                 {
-                    string emisor = cancelResponse.cancelResult.RfcEmisor;
-                    string acuse = cancelResponse.cancelResult.Acuse;
-                    string date = cancelResponse.cancelResult.Fecha;
+                    string emisor = cancelResponse.cancelResponse.cancelResult.RfcEmisor;
+                    string acuse = cancelResponse.cancelResponse.cancelResult.Acuse;
+                    string date = cancelResponse.cancelResponse.cancelResult.Fecha;
 
-                    Array folioFiscal = cancelResponse.cancelResult.Folios;
+                    Array folioFiscal = cancelResponse.cancelResponse.cancelResult.Folios;
 
                     for (int pos = 0; pos < folioFiscal.Length; pos++)
                     {
-                     Console.WriteLine("UUID: " + cancelResponse.cancelResult.Folios[pos].UUID +
-                              "\nEstatus cancelación: " + cancelResponse.cancelResult.Folios[pos].EstatusCancelacion +
-                              "\nEstatus UUID: " + cancelResponse.cancelResult.Folios[pos].EstatusUUID);
+                     Console.WriteLine("UUID: " + cancelResponse.cancelResponse.cancelResult.Folios[pos].UUID +
+                              "\nEstatus cancelación: " + cancelResponse.cancelResponse.cancelResult.Folios[pos].EstatusCancelacion +
+                              "\nEstatus UUID: " + cancelResponse.cancelResponse.cancelResult.Folios[pos].EstatusUUID);
                     }
-                    statusUuid = cancelResponse.cancelResult.CodEstatus;
+                    statusUuid = cancelResponse.cancelResponse.cancelResult.CodEstatus;
                     return statusUuid;
                 }
                 else
                 {
-                    statusUuid = cancelResponse.cancelResult.CodEstatus;
+                    statusUuid = cancelResponse.cancelResponse.cancelResult.CodEstatus;
                     return statusUuid;
                 }
 
@@ -129,7 +129,7 @@ namespace FinkokFunctions.Stamp
             string user = "uriel.rr@ticas.com.mx";
             string password = "The_Beatles1960";
             string stampXMLName = "cfdi_1.xml";
-            ApplicationClient tim = new ApplicationClient();
+            ServiceFinkok.ApplicationClient tim = new ServiceFinkok.ApplicationClient();
 
             stamp param = new stamp();
 
