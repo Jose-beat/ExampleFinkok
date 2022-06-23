@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinkokFunctions\FinkokFunctions.csproj" />
+    <ProjectReference Include="..\XMLFunctions\XMLFunctions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

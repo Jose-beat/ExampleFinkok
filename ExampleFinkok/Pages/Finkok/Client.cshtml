@@ -1,4 +1,16 @@
 ﻿@page
 @model ExampleFinkok.Pages.Finkok.ClientModel
 @{
+     string responseInvoice = (string)ViewData["ResposeInvoice"];
 }
+
+<form method="post">
+    De click para consultar los clientes
+    <button type="submit">Timbrar Factura</button>
+</form>
+
+<div>
+
+<p>@responseInvoice</p>
+</div>
+
