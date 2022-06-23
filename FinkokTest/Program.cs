@@ -1,8 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Org.BouncyCastle.X509;
+using System.Xml;
+using System.Xml.Linq;
 
 Console.WriteLine("Hello, World!");
 createStringPEM();
+createXML();
 void createStringPEM()
 {
     string SFileFrom = "C:\\Users\\WAR-PLANE\\Desktop\\Proyectos\\Facturacion\\pruebaKey\\CSD_EKU9003173C9_20190617131829\\CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
@@ -22,6 +25,12 @@ void createStringPEM()
 
     pw.WriteObject(cert);
     tw.Close();
+
+
+}
+
+void createXML()
+{
 
 
 }

@@ -7,6 +7,28 @@ namespace XMLFunctions
 {
     public class XMLMethods
     {
+
+        public string structureXML()
+        {
+            XmlDocument cfdi = new XmlDocument();
+            XmlDeclaration xmlDeclaration = cfdi.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = cfdi.DocumentElement;
+            cfdi.InsertBefore(xmlDeclaration, root);
+            XmlElement element1 = cfdi.CreateElement(string.Empty, "cuerpo", string.Empty);
+            cfdi.AppendChild(element1);
+            XmlElement element2 = cfdi.CreateElement(string.Empty, "nivel1", string.Empty);
+            element1.AppendChild(element2);
+            XmlElement element3 = cfdi.CreateElement(string.Empty, "nivel2", string.Empty);
+            XmlText text1 = cfdi.CreateTextNode("texto");
+            element3.AppendChild(text1);
+            element2.AppendChild(element3);
+            XmlElement element4 = cfdi.CreateElement(string.Empty, "nivel3", string.Empty);
+            XmlText text2 = cfdi.CreateTextNode("más texto");
+            element4.AppendChild(text2);
+            element2.AppendChild(element4);
+            cfdi.Save("C://ruta//xml_ejemplo.xml");
+
+        }
         public string generateOriginalString(string cfdiFilesRoot)
         {
             string XSLTRoot = @"http://www.sat.gob.mx/sitio_internet/cfd/4/cadenaoriginal_4_0/cadenaoriginal_4_0.xslt";
@@ -47,7 +69,8 @@ namespace XMLFunctions
             pw.WriteObject(cert);
             tw.Close();
 
-            return "";
+            return ""
+                ;
         }
     }
 }
