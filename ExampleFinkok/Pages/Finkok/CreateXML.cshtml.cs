@@ -28,7 +28,8 @@ namespace ExampleFinkok.Pages.Finkok
 
             XMLMethods generateXML = new XMLMethods();
 
-            string responseString = generateXML.generateOriginalString(certifiedFilesRoot);
+            //string responseString = generateXML.generateOriginalString(certifiedFilesRoot);
+            string responseString = generateXML.structureXML();
 
 
             return RedirectToPage("./Index", new { message = responseString });

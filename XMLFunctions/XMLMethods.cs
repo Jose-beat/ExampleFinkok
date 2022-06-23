@@ -2,6 +2,7 @@
 using System.Xml.XPath;
 using System.Xml;
 using Org.BouncyCastle.X509;
+using System.Xml.Serialization;
 
 namespace XMLFunctions
 {
@@ -10,24 +11,72 @@ namespace XMLFunctions
 
         public string structureXML()
         {
-            XmlDocument cfdi = new XmlDocument();
-            XmlDeclaration xmlDeclaration = cfdi.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = cfdi.DocumentElement;
-            cfdi.InsertBefore(xmlDeclaration, root);
-            XmlElement element1 = cfdi.CreateElement(string.Empty, "cuerpo", string.Empty);
-            cfdi.AppendChild(element1);
-            XmlElement element2 = cfdi.CreateElement(string.Empty, "nivel1", string.Empty);
-            element1.AppendChild(element2);
-            XmlElement element3 = cfdi.CreateElement(string.Empty, "nivel2", string.Empty);
-            XmlText text1 = cfdi.CreateTextNode("texto");
-            element3.AppendChild(text1);
-            element2.AppendChild(element3);
-            XmlElement element4 = cfdi.CreateElement(string.Empty, "nivel3", string.Empty);
-            XmlText text2 = cfdi.CreateTextNode("más texto");
-            element4.AppendChild(text2);
-            element2.AppendChild(element4);
-            cfdi.Save("C://ruta//xml_ejemplo.xml");
+            Comprobante comprobante = new Comprobante();
+            comprobante.Version = "4.0";
+            comprobante.Serie = "d";
+            comprobante.Folio = "1";
+            comprobante.Sello = "Faltante";
+            comprobante.NoCertificado = "123456789897867654321";
+            comprobante.Certificado = "";
+            comprobante.SubTotal = 10m;
+            comprobante.Descuento = 1;
+            comprobante.Moneda = c_Moneda.MXN;
+            comprobante.Total = 9;
+            comprobante.TipoDeComprobante = c_TipoDeComprobante.I;
+            comprobante.MetodoPago = c_MetodoPago.PUE;
+            comprobante.Exportacion = c_Exportacion.Item04;
+            comprobante.LugarExpedicion = "75660";
 
+
+            ComprobanteEmisor oEmisor = new ComprobanteEmisor();
+            oEmisor.Rfc = "RORU00090UZ2";
+            oEmisor.Nombre = "Una Razon";
+            oEmisor.RegimenFiscal = c_RegimenFiscal.Item605;
+
+            ComprobanteReceptor oReceptor = new ComprobanteReceptor();
+            oReceptor.Nombre = "pepe";
+            oReceptor.Rfc = "PEPE0009012U";
+            oReceptor.DomicilioFiscalReceptor = "75660";
+            oReceptor.RegimenFiscalReceptor = c_RegimenFiscal.Item607;
+            oReceptor.UsoCFDI = c_UsoCFDI.P01;
+
+            comprobante.Emisor = oEmisor;
+            comprobante.Receptor = oReceptor;
+
+            List<ComprobanteConcepto> listConcept = new List<ComprobanteConcepto>();
+            ComprobanteConcepto oConcepto = new ComprobanteConcepto();
+            oConcepto.Importe = 10m;
+            oConcepto.ClaveProdServ = "2323534";
+            oConcepto.Cantidad = 1;
+            oConcepto.ClaveUnidad = "CR1";
+            oConcepto.Descripcion = "Una bomba nuclear de las chiquitas";
+            oConcepto.ValorUnitario = 10m;
+            oConcepto.Importe = 10m;
+
+            listConcept.Add(oConcepto);
+            comprobante.Conceptos = listConcept.ToArray();
+
+
+
+            string path = @"C:\XML\miSegundoXML.xml";
+            
+            XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
+            string sXML = "";
+
+            using(var sww = new StringWriter())
+            {
+                using (XmlWriter writter = XmlWriter.Create(sww))
+                {
+                    oXmlSerializer.Serialize(writter, comprobante);
+                    sXML = sww.ToString();
+                }
+                    
+            }
+
+            System.IO.File.WriteAllText(path, sXML);
+
+            return "todo bien creo";
+            
         }
         public string generateOriginalString(string cfdiFilesRoot)
         {

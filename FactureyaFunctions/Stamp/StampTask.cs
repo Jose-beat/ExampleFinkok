@@ -8,11 +8,7 @@ namespace FactureyaFunctions.Stamp
 {
     public class StampTask
     {
-        public string Stamp() 
-        { 
         
-        
-        }
 
 
     }
