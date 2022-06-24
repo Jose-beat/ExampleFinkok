@@ -75,7 +75,7 @@ public partial class Comprobante {
 
     private decimal totalField;
 
-    private c_TipoDeComprobante tipoDeComprobanteField;
+    private string tipoDeComprobanteField;
 
     private c_Exportacion exportacionField;
 
@@ -87,8 +87,8 @@ public partial class Comprobante {
 
     private string confirmacionField;
 
-    [XmlAttribute("schemalocation", Namespace = XmlSchema.InstanceNamespace)]
-    public string xslSchemaLocation = "http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd";
+    [XmlAttribute("schemaLocation", Namespace = XmlSchema.InstanceNamespace)]
+    public string xslSchemaLocation = "http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd";
     public Comprobante() {
         this.versionField = "4.0";
     }
@@ -237,6 +237,7 @@ public partial class Comprobante {
             return this.formaPagoField;
         }
         set {
+            this.FormaPagoSpecified = true;
             this.formaPagoField = value;
         }
     }
@@ -365,7 +366,7 @@ public partial class Comprobante {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoDeComprobante TipoDeComprobante {
+    public string TipoDeComprobante {
         get {
             return this.tipoDeComprobanteField;
         }
@@ -392,6 +393,7 @@ public partial class Comprobante {
             return this.metodoPagoField;
         }
         set {
+            this.MetodoPagoSpecified = true;
             this.metodoPagoField = value;
         }
     }

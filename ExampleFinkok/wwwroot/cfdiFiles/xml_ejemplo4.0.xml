@@ -9,9 +9,7 @@
 				  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 				  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 				  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd">
-    <cfdi:CfdiRelacionados TipoRelacion="01">
-        <cfdi:CfdiRelacionado UUID="8B2117CA-704D-5800-BE9F-9F94DD1BF91E"/>
-    </cfdi:CfdiRelacionados>
+ 
     <cfdi:Emisor Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601" Rfc="EKU9003173C9"/>
     <cfdi:Receptor DomicilioFiscalReceptor="86400" Nombre="FELIX MANUEL ANDRADE BALLADO" RegimenFiscalReceptor="616" Rfc="AABF800614HI0" UsoCFDI="S01"/>
     <cfdi:Conceptos>

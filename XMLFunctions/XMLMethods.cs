@@ -11,12 +11,12 @@ namespace XMLFunctions
     public class XMLMethods
     {
         
-        public string structureXML(string certifiedPath)
+        public string structureXML(string certifiedPath, string cfdiFilesRoot)
         {
             string pathCer = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
             string pathKey = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key";
             string clavePrivada = "12345678a";
-            string path = @"C:\XML\miSegundoXML.xml";
+            string path = cfdiFilesRoot + "miSegundoXML.xml";
 
             string numeroCertificado, aa, b, c;
 
@@ -33,26 +33,26 @@ namespace XMLFunctions
             comprobante.Certificado = "";
             comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             comprobante.SubTotal = 10m;
-            comprobante.Descuento = 1;
             comprobante.Moneda = c_Moneda.MXN;
-            comprobante.Total = 9;
-            comprobante.TipoDeComprobante = c_TipoDeComprobante.I;
+            comprobante.Total = 10m;
+            comprobante.TipoDeComprobante = "E";
             comprobante.MetodoPago = c_MetodoPago.PUE;
+            comprobante.FormaPago = c_FormaPago.Item04;
             comprobante.Exportacion = c_Exportacion.Item04;
             comprobante.LugarExpedicion = "75660";
 
 
             ComprobanteEmisor oEmisor = new ComprobanteEmisor();
-            oEmisor.Rfc = "RORU00090UZ2";
-            oEmisor.Nombre = "Una Razon";
-            oEmisor.RegimenFiscal = c_RegimenFiscal.Item605;
+            oEmisor.Rfc = "EKU9003173C9";
+            oEmisor.Nombre = "ESCUELA KEMPER URGATE";
+            oEmisor.RegimenFiscal = c_RegimenFiscal.Item601;
 
             ComprobanteReceptor oReceptor = new ComprobanteReceptor();
-            oReceptor.Nombre = "pepe";
-            oReceptor.Rfc = "PEPE0009012U";
-            oReceptor.DomicilioFiscalReceptor = "75660";
-            oReceptor.RegimenFiscalReceptor = c_RegimenFiscal.Item607;
-            oReceptor.UsoCFDI = c_UsoCFDI.P01;
+            oReceptor.Nombre = "FELIX MANUEL ANDRADE BALLADO";
+            oReceptor.Rfc = "AABF800614HI0";
+            oReceptor.DomicilioFiscalReceptor = "86400";
+            oReceptor.RegimenFiscalReceptor = c_RegimenFiscal.Item616;
+            oReceptor.UsoCFDI = c_UsoCFDI.S01;
 
             comprobante.Emisor = oEmisor;
             comprobante.Receptor = oReceptor;
@@ -60,17 +60,16 @@ namespace XMLFunctions
             List<ComprobanteConcepto> listConcept = new List<ComprobanteConcepto>();
             ComprobanteConcepto oConcepto = new ComprobanteConcepto();
             oConcepto.Importe = 10m;
-            oConcepto.ClaveProdServ = "2323534";
+            oConcepto.ClaveProdServ = "50193201";
             oConcepto.Cantidad = 1;
-            oConcepto.ClaveUnidad = "CR1";
-            oConcepto.Descripcion = "Una bomba nuclear de las chiquitas";
+            oConcepto.ClaveUnidad = "AS";
+            oConcepto.Descripcion = "Ensalada fresca preparada";
             oConcepto.ValorUnitario = 10m;
             oConcepto.Importe = 10m;
-            oConcepto.Descuento = 1;
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
 
-            createXML(comprobante);
+            createXML(comprobante, path);
             string cadenaOriginal = "";
             string pathXsl = certifiedPath + "cadenaoriginal_4_0.xslt";
             XslCompiledTransform transformador = new XslCompiledTransform(true);
@@ -94,19 +93,20 @@ namespace XMLFunctions
             comprobante.Certificado = oSelloDigital.Certificado(pathCer);
             comprobante.Sello = oSelloDigital.Sellar(cadenaOriginal, pathKey, clavePrivada);
 
-            createXML(comprobante);
+            createXML(comprobante, path);
               
 
             return "todo bien creo";
             
         }
-        public void createXML(Comprobante comprobante)
+        public void createXML(Comprobante comprobante, string path)
         {
-            string path = @"C:\XML\miSegundoXML.xml";
+            
             XmlSerializerNamespaces xmlNameSpace = new XmlSerializerNamespaces();
             xmlNameSpace.Add("cfdi", "http://www.sat.gob.mx/cfd/4");
             xmlNameSpace.Add("tfd", "http://www.sat.gob.mx/timbrefiscaldigital");
-            xmlNameSpace.Add("xsl", "https://www.w3.org/2001/XMLSchema-instance");
+            //xmlNameSpace.Add("xs", "http://www.w3.org/2001/XMLSchema");
+            xmlNameSpace.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
             XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
             string sXML = "";
 

@@ -128,7 +128,7 @@ namespace FinkokFunctions.Stamp
         {
             string user = "uriel.rr@ticas.com.mx";
             string password = "The_Beatles1960";
-            string stampXMLName = "xml_ejemplo4.0.xml";
+            string stampXMLName = "miSegundoXML.xml";
             ServiceFinkok.ApplicationClient tim = new ServiceFinkok.ApplicationClient();
 
             stamp param = new stamp();
