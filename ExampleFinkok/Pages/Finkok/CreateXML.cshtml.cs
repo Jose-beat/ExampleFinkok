@@ -21,7 +21,7 @@ namespace ExampleFinkok.Pages.Finkok
 
         public IActionResult OnPost()
         {
-            string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "/certifiedDocs/"; 
+            string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "\\certifiedDocs\\"; 
           //  XMLGenerator generatorXML = new XMLGenerator();
            // string responseXml = generatorXML.generateXML4(certifiedFilesRoot);
            // ViewData["ResposeXML"] = responseXml;

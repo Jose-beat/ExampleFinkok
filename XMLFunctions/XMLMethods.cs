@@ -10,13 +10,13 @@ namespace XMLFunctions
 {
     public class XMLMethods
     {
-
+        
         public string structureXML(string certifiedPath)
         {
             string pathCer = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
             string pathKey = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key";
             string clavePrivada = "12345678a";
-
+            string path = @"C:\XML\miSegundoXML.xml";
 
             string numeroCertificado, aa, b, c;
 
@@ -70,27 +70,53 @@ namespace XMLFunctions
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
 
+            createXML(comprobante);
+            string cadenaOriginal = "";
+            string pathXsl = @"C:\Users\War-plane\Escritorio\Proyectos\ExampleFinkok\ExampleFinkok\wwwroot\certifiedDocs\cadenaoriginal_4_0.xslt";
+            XslCompiledTransform transformador = new XslCompiledTransform(true);
+            XsltSettings sets = new XsltSettings(true, true);
+            var resolver = new XmlUrlResolver();
+            transformador.Load(pathXsl, sets, resolver);
 
 
-            string path = @"C:\XML\miSegundoXML.xml";
+            using (StringWriter sw = new StringWriter())
+            {
+                using(XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
+                {
+                    transformador.Transform(path,xwo);
+                    cadenaOriginal = sw.ToString();
+
+
+                }
+            }
+            SelloDigital oSelloDigital = new SelloDigital();
+            comprobante.Certificado = oSelloDigital.Certificado(pathCer);
+            comprobante.Sello = oSelloDigital.Sellar(cadenaOriginal, pathKey, clavePrivada);
+
+            createXML(comprobante);
+              
+
+            return "todo bien creo";
             
+        }
+        public void createXML(Comprobante comprobante)
+        {
+            string path = @"C:\XML\miSegundoXML.xml";
+
             XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
             string sXML = "";
 
-            using(var sww = new StringWritterWithEnconding(Encoding.UTF8))
+            using (var sww = new StringWritterWithEnconding(Encoding.UTF8))
             {
                 using (XmlWriter writter = XmlWriter.Create(sww))
                 {
                     oXmlSerializer.Serialize(writter, comprobante);
                     sXML = sww.ToString();
                 }
-                    
+
             }
 
             System.IO.File.WriteAllText(path, sXML);
-
-            return "todo bien creo";
-            
         }
         public string generateOriginalString(string cfdiFilesRoot)
         {
