@@ -46,7 +46,7 @@ public partial class Comprobante {
     
     private string folioField;
     
-    private System.DateTime fechaField;
+    private string fechaField;
     
     private string selloField;
     
@@ -207,7 +207,7 @@ public partial class Comprobante {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public System.DateTime Fecha {
+    public string Fecha {
         get {
             return this.fechaField;
         }
@@ -300,6 +300,7 @@ public partial class Comprobante {
             return this.descuentoField;
         }
         set {
+            descuentoFieldSpecified = true;
             this.descuentoField = value;
         }
     }

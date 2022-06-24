@@ -21,7 +21,7 @@ namespace ExampleFinkok.Pages.Finkok
 
         public IActionResult OnPost()
         {
-            string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "/cfdiFiles/"; 
+            string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "/certifiedDocs/"; 
           //  XMLGenerator generatorXML = new XMLGenerator();
            // string responseXml = generatorXML.generateXML4(certifiedFilesRoot);
            // ViewData["ResposeXML"] = responseXml;
@@ -29,7 +29,7 @@ namespace ExampleFinkok.Pages.Finkok
             XMLMethods generateXML = new XMLMethods();
 
             //string responseString = generateXML.generateOriginalString(certifiedFilesRoot);
-            string responseString = generateXML.structureXML();
+            string responseString = generateXML.structureXML(certifiedFilesRoot);
 
 
             return RedirectToPage("./Index", new { message = responseString });

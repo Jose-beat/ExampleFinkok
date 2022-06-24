@@ -3,21 +3,35 @@ using System.Xml.XPath;
 using System.Xml;
 using Org.BouncyCastle.X509;
 using System.Xml.Serialization;
+using System.Text;
+using XSDToXML.Utils;
 
 namespace XMLFunctions
 {
     public class XMLMethods
     {
 
-        public string structureXML()
+        public string structureXML(string certifiedPath)
         {
+            string pathCer = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
+            string pathKey = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key";
+            string clavePrivada = "12345678a";
+
+
+            string numeroCertificado, aa, b, c;
+
+            SelloDigital.leerCER(pathCer, out aa, out b, out c, out numeroCertificado);
+
+
+
             Comprobante comprobante = new Comprobante();
             comprobante.Version = "4.0";
             comprobante.Serie = "d";
             comprobante.Folio = "1";
             comprobante.Sello = "Faltante";
-            comprobante.NoCertificado = "123456789897867654321";
+            comprobante.NoCertificado = numeroCertificado;
             comprobante.Certificado = "";
+            comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             comprobante.SubTotal = 10m;
             comprobante.Descuento = 1;
             comprobante.Moneda = c_Moneda.MXN;
@@ -52,7 +66,7 @@ namespace XMLFunctions
             oConcepto.Descripcion = "Una bomba nuclear de las chiquitas";
             oConcepto.ValorUnitario = 10m;
             oConcepto.Importe = 10m;
-
+            oConcepto.Descuento = 1;
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
 
@@ -63,7 +77,7 @@ namespace XMLFunctions
             XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
             string sXML = "";
 
-            using(var sww = new StringWriter())
+            using(var sww = new StringWritterWithEnconding(Encoding.UTF8))
             {
                 using (XmlWriter writter = XmlWriter.Create(sww))
                 {
