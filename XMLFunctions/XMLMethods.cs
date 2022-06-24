@@ -72,8 +72,9 @@ namespace XMLFunctions
 
             createXML(comprobante);
             string cadenaOriginal = "";
-            string pathXsl = @"C:\Users\War-plane\Escritorio\Proyectos\ExampleFinkok\ExampleFinkok\wwwroot\certifiedDocs\cadenaoriginal_4_0.xslt";
+            string pathXsl = certifiedPath + "cadenaoriginal_4_0.xslt";
             XslCompiledTransform transformador = new XslCompiledTransform(true);
+           
             XsltSettings sets = new XsltSettings(true, true);
             var resolver = new XmlUrlResolver();
             transformador.Load(pathXsl, sets, resolver);
@@ -102,7 +103,10 @@ namespace XMLFunctions
         public void createXML(Comprobante comprobante)
         {
             string path = @"C:\XML\miSegundoXML.xml";
-
+            XmlSerializerNamespaces xmlNameSpace = new XmlSerializerNamespaces();
+            xmlNameSpace.Add("cfdi", "http://www.sat.gob.mx/cfd/4");
+            xmlNameSpace.Add("tfd", "http://www.sat.gob.mx/timbrefiscaldigital");
+            xmlNameSpace.Add("xsl", "https://www.w3.org/2001/XMLSchema-instance");
             XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
             string sXML = "";
 
@@ -110,7 +114,7 @@ namespace XMLFunctions
             {
                 using (XmlWriter writter = XmlWriter.Create(sww))
                 {
-                    oXmlSerializer.Serialize(writter, comprobante);
+                    oXmlSerializer.Serialize(writter, comprobante, xmlNameSpace);
                     sXML = sww.ToString();
                 }
 
