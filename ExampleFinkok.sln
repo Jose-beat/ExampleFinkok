@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FactureyaFunctions", "Factu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XMLFunctions", "XMLFunctions\XMLFunctions.csproj", "{52A4382D-B88F-4DDD-BFFD-DB793AA5F5D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinkokTest", "FinkokTest\FinkokTest.csproj", "{32D51066-15AA-43F7-BCCA-32DA67074850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinkokTest", "FinkokTest\FinkokTest.csproj", "{32D51066-15AA-43F7-BCCA-32DA67074850}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

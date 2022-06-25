@@ -23,6 +23,7 @@ namespace ExampleFinkok.Pages.Finkok
         {
             string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "\\certifiedDocs\\";
             string cfdiFilesRoot = _hostingEnvironment.WebRootPath + "\\cfdiFiles\\";
+            
             //  XMLGenerator generatorXML = new XMLGenerator();
             // string responseXml = generatorXML.generateXML4(certifiedFilesRoot);
             // ViewData["ResposeXML"] = responseXml;

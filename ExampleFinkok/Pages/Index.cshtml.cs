@@ -15,7 +15,7 @@ namespace ExampleFinkok.Pages
         public void OnGet()
         {
             MethodStamp stampMethods = new MethodStamp();
-            XMLGenerator createXml = new XMLGenerator();
+            //XMLGenerator createXml = new XMLGenerator();
             //string createInvoice = stampMethods.invoice();
             //ViewData["ResposeInvoice"] = createInvoice ;
             ///string createResponse = createXml.generateXML4();

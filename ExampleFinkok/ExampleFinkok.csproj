@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FactureyaFunctions\FactureyaFunctions.csproj" />
     <ProjectReference Include="..\FinkokFunctions\FinkokFunctions.csproj" />
     <ProjectReference Include="..\XMLFunctions\XMLFunctions.csproj" />
   </ItemGroup>
@@ -26,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Factureya\" />
+    <Folder Include="wwwroot\stamped\" />
   </ItemGroup>
 
 </Project>

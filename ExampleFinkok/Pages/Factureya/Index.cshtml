@@ -1,0 +1,14 @@
+﻿@page
+@model ExampleFinkok.Pages.Factureya.IndexModel
+@{
+    string responseInvoice = (string)ViewData["ResposeInvoice"];
+}
+<form method="post">
+    De click para enviar su factura
+    <button type="submit">Timbrar Factura</button>
+</form>
+
+<div>
+
+<p>@responseInvoice</p>
+</div>
