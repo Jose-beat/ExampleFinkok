@@ -23,7 +23,7 @@ namespace ExampleFinkok.Pages.Factureya
             string certifiedFilesRoot = _hostingEnvironment.WebRootPath + "\\certifiedDocs\\";
             string cfdiFilesRoot = _hostingEnvironment.WebRootPath + "\\cfdiFiles\\";
             string stampedRoot = _hostingEnvironment.WebRootPath + "\\stamped\\";
-
+            
             StampTask fatureya = new StampTask();
 
             string message = await fatureya.stamp(stampedRoot, cfdiFilesRoot);

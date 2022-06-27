@@ -10,13 +10,31 @@ namespace XMLFunctions
 {
     public class XMLMethods
     {
-        
-        public string structureXML(string certifiedPath, string cfdiFilesRoot)
+        string folio;
+        string eNombre;
+        string eRFC;
+        string rNombre;
+        string rRFC;
+        string rDomicilio;
+        string nameXML;
+
+
+        public XMLMethods(string folio_, string eNombre_, string eRFC_, string rNombre_, string rRFC_, string rDomicilio_, string nameXML)
         {
-            string pathCer = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
-            string pathKey = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key";
+            folio = folio_;
+            eNombre = eNombre_;
+            eRFC = eRFC_;
+            rNombre = rNombre_;
+            rRFC = rRFC_;
+            rDomicilio = rDomicilio_;
+            this.nameXML = nameXML;
+        }
+
+        public string structureXML(string pathCer, string pathKey, string pathXsl, string cfdiFilesRoot)
+        {
+            
             string clavePrivada = "12345678a";
-            string path = cfdiFilesRoot + "cfdiFelixManuel.xml";
+            string path = cfdiFilesRoot + nameXML + ".xml";
 
             string numeroCertificado, aa, b, c;
 
@@ -27,7 +45,7 @@ namespace XMLFunctions
             Comprobante comprobante = new Comprobante();
             comprobante.Version = "4.0";
             comprobante.Serie = "d";
-            comprobante.Folio = "2";
+            comprobante.Folio = folio;
             //comprobante.Sello = "Faltante";
             comprobante.NoCertificado = numeroCertificado;
            // comprobante.Certificado = "";
@@ -43,14 +61,14 @@ namespace XMLFunctions
 
 
             ComprobanteEmisor oEmisor = new ComprobanteEmisor();
-            oEmisor.Rfc = "EKU9003173C9";
-            oEmisor.Nombre = "ESCUELA KEMPER URGATE";
+            oEmisor.Rfc = eRFC;
+            oEmisor.Nombre = eNombre;
             oEmisor.RegimenFiscal = c_RegimenFiscal.Item601;
 
             ComprobanteReceptor oReceptor = new ComprobanteReceptor();
-            oReceptor.Nombre = "FELIX MANUEL ANDRADE BALLADO";
-            oReceptor.Rfc = "AABF800614HI0";
-            oReceptor.DomicilioFiscalReceptor = "86400";
+            oReceptor.Nombre = rNombre;
+            oReceptor.Rfc = rRFC;
+            oReceptor.DomicilioFiscalReceptor = rDomicilio;
             oReceptor.RegimenFiscalReceptor = c_RegimenFiscal.Item616;
             oReceptor.UsoCFDI = c_UsoCFDI.S01;
 
@@ -71,7 +89,7 @@ namespace XMLFunctions
 
             createXML(comprobante, path);
             string cadenaOriginal = "";
-            string pathXsl = certifiedPath + "cadenaoriginal_4_0.xslt";
+            
             XslCompiledTransform transformador = new XslCompiledTransform(true);
            
             XsltSettings sets = new XsltSettings(true, true);
@@ -122,48 +140,6 @@ namespace XMLFunctions
 
             System.IO.File.WriteAllText(path, sXML);
         }
-        public string generateOriginalString(string cfdiFilesRoot)
-        {
-            string XSLTRoot = @"http://www.sat.gob.mx/sitio_internet/cfd/4/cadenaoriginal_4_0/cadenaoriginal_4_0.xslt";
-            string rutaXML = cfdiFilesRoot +  "cfdi_1.xml";
-
-            XPathDocument xml = new XPathDocument(rutaXML);
-
-            XslCompiledTransform transform = new XslCompiledTransform();
-
-            transform.Load(xml);
-
-            StringWriter str = new StringWriter();
-            XmlTextWriter cad = new XmlTextWriter(str);
-            transform.Transform(rutaXML, cad);
-            string result = str.ToString();
-
-            return result;
-        }
-
-        public string createStringPEM()
-        {
-
-            string SFileFrom = "C:\\Users\\WAR-PLANE\\Desktop\\Proyectos\\Facturacion\\pruebaKey\\CSD_EKU9003173C9_20190617131829\\CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
-            string SFileTo = "C:\\Users\\WAR-PLANE\\Desktop\\Proyectos\\Facturacion\\pruebaKey\\CSD_EKU9003173C9_20190617131829\\newFilePem.pem";
-
-            if (File.Exists(SFileTo))
-            {
-                File.Delete(SFileTo);
-
-            }
-
-            Stream sr = File.OpenRead(SFileFrom);
-            X509CertificateParser cp = new X509CertificateParser();
-            Object cert = cp.ReadCertificate(sr);
-            TextWriter tw = new StreamWriter(SFileTo);
-            Org.BouncyCastle.OpenSsl.PemWriter pw = new Org.BouncyCastle.OpenSsl.PemWriter(tw);
-
-            pw.WriteObject(cert);
-            tw.Close();
-
-            return ""
-                ;
-        }
+        
     }
 }

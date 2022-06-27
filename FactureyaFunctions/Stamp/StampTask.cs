@@ -14,8 +14,8 @@ namespace FactureyaFunctions.Stamp
 
         {
 
-            string user = "RORU000901UZ2";
-            string password = "Facturas+00";
+            string user = "RORU000901D33";
+            string password = "contRa$3na";
 
             string message = "";
 
@@ -23,7 +23,7 @@ namespace FactureyaFunctions.Stamp
 
             RespuestaTFD33 stampResponse = new RespuestaTFD33();
             XmlDocument cfdi = new XmlDocument();
-            cfdi.Load(cfdiRoot + "miSegundoXML.xml");
+            cfdi.Load(cfdiRoot + "FactureyaCFDI.xml");
             string stringXML = cfdi.OuterXml;
 
             stampResponse = await stampService.TimbrarCFDIAsync(user,password, stringXML, "00001");
@@ -36,7 +36,7 @@ namespace FactureyaFunctions.Stamp
             }
             else
             {
-                message = stampResponse.MensajeErrorDetallado;
+                message = stampResponse.MensajeError;
             }
 
 
