@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FactureyaFunctions\FactureyaFunctions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>..\DLLFinkok\BouncyCastle.Crypto.dll</HintPath>
     </Reference>

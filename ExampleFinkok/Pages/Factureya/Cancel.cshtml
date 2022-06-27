@@ -1,0 +1,20 @@
+﻿@page
+@model ExampleFinkok.Pages.Factureya.CancelModel
+@{
+     string responseInvoice = (string)ViewData["ResposeInvoice"];
+}
+<form method="post">
+    De click para enviar su factura
+    <div>
+        <input type="text"  name="uuidToCancel"/>
+    </div>
+    <div>
+        <button type="submit">Timbrar Factura</button>
+    </div>
+    
+</form>
+
+<div>
+
+<p>@responseInvoice</p>
+</div>

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using FactureyaFunctions.Utils;
+using Microsoft.VisualBasic.FileIO;
 using ServiceCancelacion;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,20 @@ namespace FinkokFunctions.CancelStamp
             string passwordCer = "12345678a";
             string username = "uriel.rr@ticas.com.mx";
             string statusUuid = "";
+            string pfxRoot = compiledFilesRoot + "myFile.pfx";
+            string encRoot = compiledFilesRoot + "myFile.enc";
             string certifiedPem, keyEnc;
             try
             {
-                PEMFactory(directCer, directKey, passwordFinkok, passwordCer, compiledFilesRoot,out certifiedPem, out keyEnc);
+               
+
+                CertifiedTools tools = new CertifiedTools(directCer, directKey, passwordCer, pfxRoot, compiledFilesRoot, encRoot);
+                if (!tools.createPFX())
+                {
+                    return "Hay un error en la generacion de certificados";
+                }
+                certifiedPem = tools.CPEMFile;
+                keyEnc = tools.ENCFile;
                 string cer = "";
                 string key = "";
 

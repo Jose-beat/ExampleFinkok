@@ -9,11 +9,6 @@ namespace FinkokFunctions.Stamp
     public class MethodStamp
     {
 
-   
-
-     
-
-       
         public string invoice(string cfdiFilesRoot)
         {
             string user = "uriel.rr@ticas.com.mx";
