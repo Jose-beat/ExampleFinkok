@@ -16,7 +16,7 @@ namespace XMLFunctions
             string pathCer = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753s.cer";
             string pathKey = certifiedPath +  "CSD_Escuela_Kemper_Urgate_EKU9003173C9_20190617_131753.key";
             string clavePrivada = "12345678a";
-            string path = cfdiFilesRoot + "miSegundoXML.xml";
+            string path = cfdiFilesRoot + "cfdiFelixManuel.xml";
 
             string numeroCertificado, aa, b, c;
 
@@ -27,10 +27,10 @@ namespace XMLFunctions
             Comprobante comprobante = new Comprobante();
             comprobante.Version = "4.0";
             comprobante.Serie = "d";
-            comprobante.Folio = "1";
-            comprobante.Sello = "Faltante";
+            comprobante.Folio = "2";
+            //comprobante.Sello = "Faltante";
             comprobante.NoCertificado = numeroCertificado;
-            comprobante.Certificado = "";
+           // comprobante.Certificado = "";
             comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
             comprobante.SubTotal = 10m;
             comprobante.Moneda = c_Moneda.MXN;

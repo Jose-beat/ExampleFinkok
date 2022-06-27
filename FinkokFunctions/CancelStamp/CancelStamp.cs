@@ -27,7 +27,7 @@ namespace FinkokFunctions.CancelStamp
             {
                
 
-                CertifiedTools tools = new CertifiedTools(directCer, directKey, passwordCer, pfxRoot, compiledFilesRoot, encRoot);
+                CertifiedTools tools = new CertifiedTools(directCer, directKey, passwordCer, pfxRoot, compiledFilesRoot, encRoot, passwordFinkok);
                 if (!tools.createPFX())
                 {
                     return "Hay un error en la generacion de certificados";

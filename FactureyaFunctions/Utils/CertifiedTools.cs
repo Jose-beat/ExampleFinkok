@@ -17,12 +17,12 @@ namespace FactureyaFunctions.Utils
         string KPEMFile = "";
         public string CPEMFile = "";
         public string ENCFile = "";
-
+        string passwordFinkok;
         public string error = "";
         public string succesMessage = "";
 
 
-        public CertifiedTools(string cer_, string key_, string privateKeyCode_, string PfxFile_, string pathTemp, string EncFile_)
+        public CertifiedTools(string cer_, string key_, string privateKeyCode_, string PfxFile_, string pathTemp, string EncFile_, string passwordFinkok_ = null)
         {
             cer = cer_;
             key = key_;
@@ -31,7 +31,7 @@ namespace FactureyaFunctions.Utils
             CPEMFile = pathTemp + "c.pem";
             PFXFile = PfxFile_;
             ENCFile = EncFile_;
-
+            passwordFinkok = passwordFinkok_;
         }
 
         public bool createPFX()
@@ -80,11 +80,6 @@ namespace FactureyaFunctions.Utils
             proc2.Start();
             proc2.WaitForExit();
 
-            proc4.StartInfo.FileName = "openssl";
-            proc4.StartInfo.Arguments = "rsa -in \"" + KPEMFile + "\" -des3 -out \"" + ENCFile + "\" -passout pass:" + privateKeyCode;
-            proc4.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
-            proc4.Start();
-            proc4.WaitForExit();
 
             proc3.StartInfo.FileName = "openssl";
             proc3.StartInfo.Arguments = "pkcs12 -export -out \"" + PFXFile + "\" -inkey \"" + KPEMFile + "\" -in \"" + CPEMFile + "\" -passout pass:" + privateKeyCode;
@@ -92,9 +87,19 @@ namespace FactureyaFunctions.Utils
             proc3.Start();
             proc3.WaitForExit();
 
+            if (passwordFinkok != null)
+            {
+                proc4.StartInfo.FileName = "openssl";
+                proc4.StartInfo.Arguments = "rsa -in \"" + KPEMFile + "\" -des3 -out \"" + ENCFile + "\" -passout pass:" + passwordFinkok;
+                proc4.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
+                proc4.Start();
+                proc4.WaitForExit();
+            }
+
+      
 
 
-            
+
             proc.Dispose();
             proc2.Dispose();
             proc3.Dispose();
