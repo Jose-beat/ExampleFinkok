@@ -17,9 +17,10 @@ namespace XMLFunctions
         string rRFC;
         string rDomicilio;
         string nameXML;
+        string privateKey;
 
 
-        public XMLMethods(string folio_, string eNombre_, string eRFC_, string rNombre_, string rRFC_, string rDomicilio_, string nameXML)
+        public XMLMethods(string folio_, string eNombre_, string eRFC_, string rNombre_, string rRFC_, string rDomicilio_, string nameXML, string privateKey_)
         {
             folio = folio_;
             eNombre = eNombre_;
@@ -28,12 +29,13 @@ namespace XMLFunctions
             rRFC = rRFC_;
             rDomicilio = rDomicilio_;
             this.nameXML = nameXML;
+            this.privateKey = privateKey_;
         }
 
         public string structureXML(string pathCer, string pathKey, string pathXsl, string cfdiFilesRoot)
         {
             
-            string clavePrivada = "12345678a";
+            //string clavePrivada = "12345678a";
             string path = cfdiFilesRoot + nameXML + ".xml";
 
             string numeroCertificado, aa, b, c;
@@ -109,7 +111,7 @@ namespace XMLFunctions
             }
             SelloDigital oSelloDigital = new SelloDigital();
             comprobante.Certificado = oSelloDigital.Certificado(pathCer);
-            comprobante.Sello = oSelloDigital.Sellar(cadenaOriginal, pathKey, clavePrivada);
+            comprobante.Sello = oSelloDigital.Sellar(cadenaOriginal, pathKey, privateKey);
 
             createXML(comprobante, path);
               

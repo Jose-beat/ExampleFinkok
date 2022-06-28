@@ -31,7 +31,7 @@ namespace FactureyaFunctions.Stamp
             if(stampResponse.OperacionExitosa == true)
             {
                 cfdi.LoadXml(stampResponse.XMLResultado);
-                cfdi.Save(stampedRoot + "XML_Timbrado.xml");
+                cfdi.Save(stampedRoot + "FactureyaCFDI.xml");
                 message = stampResponse.Timbre.UUID;
             }
             else

@@ -25,7 +25,7 @@ namespace ExampleFinkok.Pages.Factureya
             string compiledFilesRoot = _hostingEnvironment.WebRootPath + "\\compiledFiles\\";
             CancelTask cancel = new CancelTask();
             string messageCancel = await cancel.cancelCfdi(uuidToCancel, certifiedFilesRoot, compiledFilesRoot);
-            return RedirectToPage("./Index", new { message = messageCancel });
+            return RedirectToPage("./Cancel", new { message = messageCancel });
         }
     }
 }

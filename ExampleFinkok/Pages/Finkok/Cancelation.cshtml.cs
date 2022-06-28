@@ -23,7 +23,7 @@ namespace ExampleFinkok.Pages.Finkok
             CancelStamp cancel = new CancelStamp();
 
             string uuidCancelled = cancel.cfdiCancelation(uuidToCancel,certifiedFilesRoot,compiledFilesRoot);
-            return RedirectToPage("./Index", new { message = uuidCancelled });
+            return RedirectToPage("./Cancelation", new { message = uuidCancelled });
         }
     }
 }
