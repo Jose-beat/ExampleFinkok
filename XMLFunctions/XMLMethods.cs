@@ -89,8 +89,11 @@ namespace XMLFunctions
             oConcepto.Importe = 10m;
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
-            comprobante.Complemento = new ComprobanteComplemento()
-                
+
+            CreateCartaPorte cartaPorte = new CreateCartaPorte();
+
+            comprobante = cartaPorte.complement(comprobante);
+       
 
             createXML(comprobante, path);
             string cadenaOriginal = "";
