@@ -77,6 +77,7 @@ namespace XMLFunctions
             comprobante.Emisor = oEmisor;
             comprobante.Receptor = oReceptor;
 
+          
             List<ComprobanteConcepto> listConcept = new List<ComprobanteConcepto>();
             ComprobanteConcepto oConcepto = new ComprobanteConcepto();
             oConcepto.Importe = 10m;
@@ -88,6 +89,8 @@ namespace XMLFunctions
             oConcepto.Importe = 10m;
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
+            comprobante.Complemento = new ComprobanteComplemento()
+                
 
             createXML(comprobante, path);
             string cadenaOriginal = "";
