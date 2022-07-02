@@ -11,17 +11,14 @@ namespace XMLFunctions
     public class CreateCartaPorte
     {
 
-        public CartaPorteMercanciasMercancia addMercancia()
-        {
-            CartaPorteMercanciasMercancia mercancia = new CartaPorteMercanciasMercancia();
-            return mercancia;
-        }
-        public Comprobante complement(Comprobante comprobante)
+       
+        public Comprobante complement(Comprobante comprobante, string rRFC, string eRFC)
         {
             //Carta Porte
             CartaPorte cartaPorte = new CartaPorte();
             cartaPorte.Version = "2.0";
-
+            cartaPorte.TranspInternac = CartaPorteTranspInternac.No;
+            
             //Añadir mercancias
             CartaPorteMercancias mercancias = new CartaPorteMercancias();
             mercancias.PesoBrutoTotal = 100m;
@@ -47,20 +44,22 @@ namespace XMLFunctions
             CartaPorteUbicacion ubicacionOrigen = new CartaPorteUbicacion();
             //CartaPorteUbicacion Origen
             ubicacionOrigen.TipoUbicacion = CartaPorteUbicacionTipoUbicacion.Origen;
-            ubicacionOrigen.RFCRemitenteDestinatario = "";
+            ubicacionOrigen.RFCRemitenteDestinatario = eRFC;
             DateTime horaSalida = new DateTime(2022, 6, 10);
             ubicacionOrigen.FechaHoraSalidaLlegada = horaSalida.ToString("yyyy-MM-ddThh:mm:ss");
-
+            
+            
             CartaPorteUbicacion ubicacionDestino = new CartaPorteUbicacion();
             //Ubicacion Destinatario
             DateTime horaLlegada = new DateTime(2022, 6, 10);
             ubicacionDestino.TipoUbicacion = CartaPorteUbicacionTipoUbicacion.Destino;
-            ubicacionDestino.RFCRemitenteDestinatario = "";
+            ubicacionDestino.RFCRemitenteDestinatario = rRFC;
             ubicacionDestino.FechaHoraSalidaLlegada = horaLlegada.ToString("yyyy-MM-ddThh:mm:ss");
 
             ubicaciones.Add(ubicacionOrigen);
             ubicaciones.Add(ubicacionDestino);
 
+            cartaPorte.Mercancias = mercancias;
             cartaPorte.Ubicaciones = ubicaciones.ToArray();
 
 
@@ -68,25 +67,19 @@ namespace XMLFunctions
 
             comprobante.Complemento = new ComprobanteComplemento();
             
-            XmlDocument compPorteMerc = new XmlDocument();
-            XmlSerializerNamespaces xmlNamespaceMercPorte = new XmlSerializerNamespaces();
+            XmlDocument compPorte = new XmlDocument();
+            XmlSerializerNamespaces xmlNamespacePorte = new XmlSerializerNamespaces();
+            xmlNamespacePorte.Add("cartaporte20", "http://www.sat.gob.mx/CartaPorte20");
 
-            using (XmlWriter writter = compPorteMerc.CreateNavigator().AppendChild())
+
+            using (XmlWriter writter = compPorte.CreateNavigator().AppendChild())
             {
-                new XmlSerializer(mercancias.GetType()).Serialize(writter, listMercancias, xmlNamespaceMercPorte);
+                new XmlSerializer(cartaPorte.GetType()).Serialize(writter, cartaPorte, xmlNamespacePorte);
+                
             }
-
-            XmlDocument compPorteUbc = new XmlDocument();
-            XmlSerializerNamespaces xmlNamespaceUbcPorte = new XmlSerializerNamespaces();
-
-
-            using(XmlWriter writter = compPorteUbc.CreateNavigator().AppendChild())
-            {
-                new XmlSerializer(ubicaciones.GetType()).Serialize(writter, listMercancias, xmlNamespaceUbcPorte);
-            }
-            comprobante.Complemento.Any = new XmlElement[2];
-            comprobante.Complemento.Any[0] = compPorteMerc.DocumentElement;
-            comprobante.Complemento.Any[1] = compPorteUbc.DocumentElement;
+            
+            comprobante.Complemento.Any = new XmlElement[1];
+            comprobante.Complemento.Any[0] = compPorte.DocumentElement;
 
 
 

@@ -31,7 +31,7 @@ namespace ExampleFinkok.Pages.Finkok
             // ViewData["ResposeXML"] = responseXml;
 
 
-            XMLMethods generateXML = new XMLMethods("07", "ESCUELA KEMPER URGATE", "EKU9003173C9", "FELIX MANUEL ANDRADE BALLADO", "AABF800614HI0", "86400", "finkokCFDI", "12345678a");
+            XMLMethods generateXML = new XMLMethods("067", "ESCUELA KEMPER URGATE", "EKU9003173C9", "FELIX MANUEL ANDRADE BALLADO", "AABF800614HI0", "86400", "finkokCFDI", "12345678a");
 
             //string responseString = generateXML.generateOriginalString(certifiedFilesRoot);
             string responseString = generateXML.structureXML(pathCer,pathKey,pathXsl, cfdiFilesRoot);

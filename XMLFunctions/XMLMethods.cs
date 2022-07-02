@@ -55,12 +55,12 @@ namespace XMLFunctions
             comprobante.SubTotal = 10m;
             comprobante.Moneda = c_Moneda.MXN;
             comprobante.Total = 10m;
-            comprobante.TipoDeComprobante = "E";
+            comprobante.TipoDeComprobante = "I";
             comprobante.MetodoPago = c_MetodoPago.PUE;
             comprobante.FormaPago = c_FormaPago.Item04;
             comprobante.Exportacion = c_Exportacion.Item04;
             comprobante.LugarExpedicion = "75660";
-
+            
 
             ComprobanteEmisor oEmisor = new ComprobanteEmisor();
             oEmisor.Rfc = eRFC;
@@ -81,7 +81,7 @@ namespace XMLFunctions
             List<ComprobanteConcepto> listConcept = new List<ComprobanteConcepto>();
             ComprobanteConcepto oConcepto = new ComprobanteConcepto();
             oConcepto.Importe = 10m;
-            oConcepto.ClaveProdServ = "50193201";
+            oConcepto.ClaveProdServ = "78101502";//Cambia en la carta porte
             oConcepto.Cantidad = 1;
             oConcepto.ClaveUnidad = "AS";
             oConcepto.Descripcion = "Ensalada fresca preparada";
@@ -92,7 +92,7 @@ namespace XMLFunctions
 
             CreateCartaPorte cartaPorte = new CreateCartaPorte();
 
-            comprobante = cartaPorte.complement(comprobante);
+            comprobante = cartaPorte.complement(comprobante, rRFC, eRFC);
        
 
             createXML(comprobante, path);
@@ -133,6 +133,8 @@ namespace XMLFunctions
             xmlNameSpace.Add("tfd", "http://www.sat.gob.mx/timbrefiscaldigital");
             //xmlNameSpace.Add("xs", "http://www.w3.org/2001/XMLSchema");
             xmlNameSpace.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            xmlNameSpace.Add("cartaporte20", "http://www.sat.gob.mx/CartaPorte20");
+
             XmlSerializer oXmlSerializer = new XmlSerializer(typeof(Comprobante));
             string sXML = "";
 

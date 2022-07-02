@@ -88,7 +88,10 @@ public partial class Comprobante {
     private string confirmacionField;
 
     [XmlAttribute("schemaLocation", Namespace = XmlSchema.InstanceNamespace)]
-    public string xslSchemaLocation = "http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd";
+    //Si no se cuenta con carta porte
+    //public string xslSchemaLocation = "http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd ";
+    //si se cuenta con carta porte http://www.sat.gob.mx/CartaPorte20
+    public string xslSchemaLocation = "http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/CartaPorte20 http://www.sat.gob.mx/sitio_internet/cfd/CartaPorte/CartaPorte20.xsd";
     public Comprobante() {
         this.versionField = "4.0";
     }

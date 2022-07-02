@@ -148,6 +148,7 @@ public partial class CartaPorte {
             return this.paisOrigenDestinoFieldSpecified;
         }
         set {
+
             this.paisOrigenDestinoFieldSpecified = value;
         }
     }
@@ -159,6 +160,7 @@ public partial class CartaPorte {
             return this.viaEntradaSalidaField;
         }
         set {
+
             this.viaEntradaSalidaField = value;
         }
     }
@@ -330,11 +332,12 @@ public partial class CartaPorteUbicacion {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_Estaciones NumEstacion {
+    public string NumEstacion {
         get {
             return this.numEstacionField;
         }
         set {
+            
             this.numEstacionField = value;
         }
     }
@@ -1014,7 +1017,7 @@ public partial class CartaPorteMercanciasMercancia {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_TipoEmbalaje Embalaje {
+    public string Embalaje {
         get {
             return this.embalajeField;
         }
@@ -1327,7 +1330,7 @@ public partial class CartaPorteMercanciasMercanciaDetalleMercancia {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public c_ClaveUnidadPeso UnidadPesoMerc {
+    public string UnidadPesoMerc {
         get {
             return this.unidadPesoMercField;
         }
