@@ -183,6 +183,7 @@ public partial class CartaPorte {
             return this.totalDistRecField;
         }
         set {
+            this.totalDistRecFieldSpecified = true;
             this.totalDistRecField = value;
         }
     }
@@ -337,7 +338,7 @@ public partial class CartaPorteUbicacion {
             return this.numEstacionField;
         }
         set {
-            
+
             this.numEstacionField = value;
         }
     }
@@ -404,6 +405,7 @@ public partial class CartaPorteUbicacion {
             return this.tipoEstacionField;
         }
         set {
+            this.tipoEstacionFieldSpecified = false;
             this.tipoEstacionField = value;
         }
     }
@@ -426,6 +428,7 @@ public partial class CartaPorteUbicacion {
             return this.distanciaRecorridaField;
         }
         set {
+            this.distanciaRecorridaFieldSpecified = true;
             this.distanciaRecorridaField = value;
         }
     }
