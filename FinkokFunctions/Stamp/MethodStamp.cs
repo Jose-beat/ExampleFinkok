@@ -13,7 +13,8 @@ namespace FinkokFunctions.Stamp
         {
             string user = "uriel.rr@ticas.com.mx";
             string password = "The_Beatles1960";
-            string stampXMLName = "finkokCFDI.xml";
+            //string stampXMLName = "finkokCFDI.xml";
+            string stampXMLName = "ordenTrasladoFinkok.xml";
             ServiceFinkok.ApplicationClient tim = new ServiceFinkok.ApplicationClient();
 
             stamp param = new stamp();

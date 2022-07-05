@@ -32,6 +32,110 @@ namespace XMLFunctions
             this.privateKey = privateKey_;
         }
 
+        //Duplicacion de CFDI de tipo T (traslados)
+
+        public string structureXMLTransfer(string pathCer, string pathKey, string pathXsl, string cfdiFilesRoot)
+        {
+            //string clavePrivada = "12345678a";
+            string path = cfdiFilesRoot + nameXML + ".xml";
+
+            string numeroCertificado, aa, b, c;
+
+            SelloDigital.leerCER(pathCer, out aa, out b, out c, out numeroCertificado);
+
+
+
+            Comprobante comprobante = new Comprobante();
+            comprobante.Version = "4.0";
+            comprobante.Serie = "G";
+            comprobante.Folio = folio;
+            //comprobante.Sello = "Faltante";
+            comprobante.NoCertificado = numeroCertificado;
+            // comprobante.Certificado = "";
+            comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+
+            //Estos tres atributos son genericos (Seompre estaran en ese estado en la orden de traslado)
+            comprobante.SubTotal = 0m;
+            comprobante.Moneda = c_Moneda.XXX;
+            comprobante.Total = 0m;
+            //comprobante.MetodoPago = c_MetodoPago.PUE;
+            //comprobante.FormaPago = c_FormaPago.Item04;
+
+            comprobante.TipoDeComprobante = "T";
+
+
+
+            comprobante.Exportacion = c_Exportacion.Item04;
+            comprobante.LugarExpedicion = "20000";
+
+
+            ComprobanteEmisor oEmisor = new ComprobanteEmisor();
+            oEmisor.Rfc = eRFC;
+            oEmisor.Nombre = eNombre;
+            oEmisor.RegimenFiscal = c_RegimenFiscal.Item601;
+
+            ComprobanteReceptor oReceptor = new ComprobanteReceptor();
+            oReceptor.Nombre = eNombre;
+            oReceptor.Rfc = eRFC;
+            //El rfc del receptor debe ser igual al del emisor 
+
+            oReceptor.DomicilioFiscalReceptor = "22615";
+            oReceptor.RegimenFiscalReceptor = c_RegimenFiscal.Item601;
+
+
+            oReceptor.UsoCFDI = c_UsoCFDI.S01; //Este valor se asigna si es por tralado
+
+            comprobante.Emisor = oEmisor;
+            comprobante.Receptor = oReceptor;
+
+
+            List<ComprobanteConcepto> listConcept = new List<ComprobanteConcepto>();
+            ComprobanteConcepto oConcepto = new ComprobanteConcepto();
+            oConcepto.Importe = 10m;
+            oConcepto.ClaveProdServ = "78101502";//Cambia en la carta porte
+            oConcepto.Cantidad = 1;
+            oConcepto.ClaveUnidad = "AS";
+            oConcepto.Descripcion = "Ensalada fresca preparada";
+            oConcepto.ValorUnitario = 10m;
+            oConcepto.Importe = 10m;
+            listConcept.Add(oConcepto);
+            comprobante.Conceptos = listConcept.ToArray();
+
+            CreateCartaPorte cartaPorte = new CreateCartaPorte();
+
+            comprobante = cartaPorte.complement(comprobante, rRFC, eRFC);
+
+
+            createXML(comprobante, path);
+            string cadenaOriginal = "";
+
+            XslCompiledTransform transformador = new XslCompiledTransform(true);
+
+            XsltSettings sets = new XsltSettings(true, true);
+            var resolver = new XmlUrlResolver();
+            transformador.Load(pathXsl, sets, resolver);
+
+
+            using (StringWriter sw = new StringWriter())
+            {
+                using (XmlWriter xwo = XmlWriter.Create(sw, transformador.OutputSettings))
+                {
+                    transformador.Transform(path, xwo);
+                    cadenaOriginal = sw.ToString();
+
+
+                }
+            }
+            SelloDigital oSelloDigital = new SelloDigital();
+            comprobante.Certificado = oSelloDigital.Certificado(pathCer);
+            comprobante.Sello = oSelloDigital.Sellar(cadenaOriginal, pathKey, privateKey);
+
+            createXML(comprobante, path);
+
+
+            return "todo bien creo";
+        }
+
         public string structureXML(string pathCer, string pathKey, string pathXsl, string cfdiFilesRoot)
         {
             
