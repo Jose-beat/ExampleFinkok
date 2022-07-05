@@ -23,15 +23,16 @@ namespace FactureyaFunctions.Stamp
 
             RespuestaTFD33 stampResponse = new RespuestaTFD33();
             XmlDocument cfdi = new XmlDocument();
+            XmlDocument cfdiStamped = new XmlDocument();
             cfdi.Load(cfdiRoot + "FactureyaCFDI.xml");
             string stringXML = cfdi.OuterXml;
-
+           
             stampResponse = await stampService.TimbrarCFDIAsync(user,password, stringXML, "00001");
 
             if(stampResponse.OperacionExitosa == true)
             {
-                cfdi.LoadXml(stampResponse.XMLResultado);
-                cfdi.Save(stampedRoot + "FactureyaCFDI.xml");
+                cfdiStamped.LoadXml(stampResponse.XMLResultado);
+                cfdiStamped.Save(stampedRoot + "FactureyaCFDI" + stampResponse.Timbre.UUID + ".xml");
                 message = stampResponse.Timbre.UUID;
             }
             else

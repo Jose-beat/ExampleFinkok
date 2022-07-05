@@ -29,7 +29,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\cfdiFiles\CancelVaucher\" />
     <Folder Include="wwwroot\compiledFiles\" />
-    <Folder Include="wwwroot\stamped\" />
   </ItemGroup>
 
 </Project>

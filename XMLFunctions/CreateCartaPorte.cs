@@ -75,8 +75,6 @@ namespace XMLFunctions
                 CodigoPostal = "75670"
 
 
-
-
             };
 
             CartaPorteTiposFigura figuraTransporte = new CartaPorteTiposFigura()

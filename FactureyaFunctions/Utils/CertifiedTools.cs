@@ -68,7 +68,7 @@ namespace FactureyaFunctions.Utils
 
             proc.StartInfo.FileName = "openssl";
             proc.StartInfo.Arguments = "x509 -inform DER -in \"" + cer + "\" -out \"" + CPEMFile + "\"";
-            proc.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
+           // proc.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
             proc.Start();
             proc.WaitForExit();
 
@@ -76,14 +76,14 @@ namespace FactureyaFunctions.Utils
 
             proc2.StartInfo.FileName = "openssl";
             proc2.StartInfo.Arguments = "pkcs8 -inform DER -in \"" + key + "\" -passin pass:" + privateKeyCode + " -out \"" + KPEMFile + "\"";
-            proc2.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
+            //proc2.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
             proc2.Start();
             proc2.WaitForExit();
 
 
             proc3.StartInfo.FileName = "openssl";
             proc3.StartInfo.Arguments = "pkcs12 -export -out \"" + PFXFile + "\" -inkey \"" + KPEMFile + "\" -in \"" + CPEMFile + "\" -passout pass:" + privateKeyCode;
-            proc3.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
+            //proc3.StartInfo.WorkingDirectory = @"C:\Program Files\OpenSSL-Win64\bin";
             proc3.Start();
             proc3.WaitForExit();
 
