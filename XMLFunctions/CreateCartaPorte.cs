@@ -51,6 +51,7 @@ namespace XMLFunctions
                 PolizaRespCivil = "REUGI8RGERGYEGUR4429"
             };
 
+            //OBTENER INFORMACION DE VEHICULO Y SUS PERFILES EN  TINISA 
             mercancias.Autotransporte = new CartaPorteMercanciasAutotransporte()
             {
                 PermSCT = c_TipoPermiso.TPAF01,
@@ -76,7 +77,7 @@ namespace XMLFunctions
 
 
             };
-
+            //OBTENER INFORMACION DE OPERADORES Y SUS PERFILES EN E TINISA 
             CartaPorteTiposFigura figuraTransporte = new CartaPorteTiposFigura()
             {
                 TipoFigura = c_FiguraTransporte.Item01,

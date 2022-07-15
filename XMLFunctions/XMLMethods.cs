@@ -53,7 +53,7 @@ namespace XMLFunctions
             comprobante.NoCertificado = numeroCertificado;
             // comprobante.Certificado = "";
             comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
-
+           
             //Estos tres atributos son genericos (Seompre estaran en ese estado en la orden de traslado)
             comprobante.SubTotal = 0m;
             comprobante.Moneda = c_Moneda.XXX;
@@ -62,7 +62,7 @@ namespace XMLFunctions
             //comprobante.FormaPago = c_FormaPago.Item04;
 
             comprobante.TipoDeComprobante = "T";
-
+          
 
 
             comprobante.Exportacion = c_Exportacion.Item04;
@@ -154,8 +154,10 @@ namespace XMLFunctions
             comprobante.Folio = folio;
             //comprobante.Sello = "Faltante";
             comprobante.NoCertificado = numeroCertificado;
-           // comprobante.Certificado = "";
             comprobante.Fecha = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+            // comprobante.Certificado = "";
+
+
             comprobante.SubTotal = 10m;
             comprobante.Moneda = c_Moneda.MXN;
             comprobante.Total = 10m;
@@ -190,7 +192,7 @@ namespace XMLFunctions
             oConcepto.ClaveUnidad = "AS";
             oConcepto.Descripcion = "Ensalada fresca preparada";
             oConcepto.ValorUnitario = 10m;
-            oConcepto.Importe = 10m;
+          
             listConcept.Add(oConcepto);
             comprobante.Conceptos = listConcept.ToArray();
 
