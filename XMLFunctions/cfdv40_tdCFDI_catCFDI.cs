@@ -386,6 +386,7 @@ public partial class Comprobante {
         }
         set {
             this.exportacionField = value;
+            
         }
     }
     

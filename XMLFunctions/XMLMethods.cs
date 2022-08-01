@@ -198,7 +198,7 @@ namespace XMLFunctions
 
             CreateCartaPorte cartaPorte = new CreateCartaPorte();
 
-            //comprobante = cartaPorte.complement(comprobante, rRFC, eRFC);
+            comprobante = cartaPorte.complement(comprobante, rRFC, eRFC);
        
 
             createXML(comprobante, path);
