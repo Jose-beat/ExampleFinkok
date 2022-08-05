@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FactureyaFunctions\FactureyaFunctions.csproj" />
+    <ProjectReference Include="..\FingerPrintReader\FingerPrintReader.csproj" />
     <ProjectReference Include="..\FinkokFunctions\FinkokFunctions.csproj" />
     <ProjectReference Include="..\XMLFunctions\XMLFunctions.csproj" />
   </ItemGroup>
